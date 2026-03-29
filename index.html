@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tool Hub — 25+ AIツール特化ブログ & YouTube</title>
+<meta name="description" content="25以上のAIツール特化ブログとYouTubeチャンネルを集約したポータルサイト。ChatGPT、Claude、Gemini、Midjourney、Cursor等の最新AI情報を毎日自動配信。">
+<meta property="og:title" content="AI Tool Hub — 25+ AIツール特化ブログ & YouTube">
+<meta property="og:description" content="25以上のAIツール特化ブログとYouTubeチャンネルを集約。最新AI情報を毎日自動配信中。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://musclelove-777.github.io/ai-tool-hub/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Tool Hub — 25+ AIツール特化ブログ & YouTube">
+<meta name="twitter:description" content="25以上のAIツール特化ブログとYouTubeチャンネルを集約。最新AI情報を毎日自動配信中。">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg-primary:#0f172a;--bg-secondary:#1e293b;--bg-card:#1e293b;--bg-card-hover:#263548;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#64748b;--border-color:#334155;--glow-color:rgba(99,102,241,0.3)}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans JP',sans-serif;background:linear-gradient(135deg,var(--bg-primary) 0%,var(--bg-secondary) 50%,var(--bg-primary) 100%);color:var(--text-primary);min-height:100vh;overflow-x:hidden;line-height:1.6}
+
+/* Particle canvas */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* Main container */
+.container{max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+
+/* Header */
+.header{text-align:center;padding:80px 0 40px;position:relative}
+.header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:200px;height:2px;background:linear-gradient(90deg,transparent,#6366f1,transparent)}
+.header h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;background:linear-gradient(135deg,#6366f1 0%,#a78bfa 30%,#06b6d4 60%,#10b981 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em;margin-bottom:16px;animation:gradientShift 8s ease infinite;background-size:200% 200%}
+@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.header .subtitle{font-size:clamp(1rem,2.5vw,1.25rem);color:var(--text-secondary);max-width:600px;margin:0 auto;font-weight:400}
+.header .badge{display:inline-block;margin-top:20px;padding:6px 16px;border-radius:100px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);color:#a78bfa;font-size:0.85rem;font-weight:500;animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,0.2)}50%{box-shadow:0 0 20px 4px rgba(99,102,241,0.15)}}
+
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:40px;padding:30px 0;margin-bottom:20px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-number{font-size:2rem;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:0.85rem;color:var(--text-muted);margin-top:2px}
+
+/* YouTube section */
+.youtube-section{margin:30px 0 50px;padding:30px;border-radius:20px;background:linear-gradient(135deg,rgba(255,0,0,0.08) 0%,rgba(255,0,0,0.03) 100%);border:1px solid rgba(255,0,0,0.15);text-align:center;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s}
+.youtube-section:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(255,0,0,0.15)}
+.youtube-section::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,0,0,0.05) 0%,transparent 60%);animation:rotateBg 20s linear infinite}
+@keyframes rotateBg{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.yt-icon{font-size:3.5rem;margin-bottom:12px;display:inline-block;filter:drop-shadow(0 0 20px rgba(255,0,0,0.4))}
+.yt-title{font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:8px}
+.yt-desc{color:var(--text-secondary);font-size:0.95rem;margin-bottom:18px}
+.yt-link{display:inline-flex;align-items:center;gap:8px;padding:12px 32px;border-radius:12px;background:linear-gradient(135deg,#ff0000,#cc0000);color:#fff;text-decoration:none;font-weight:600;font-size:1rem;transition:all 0.3s;box-shadow:0 4px 15px rgba(255,0,0,0.3)}
+.yt-link:hover{transform:scale(1.05);box-shadow:0 6px 25px rgba(255,0,0,0.4)}
+
+/* Category sections */
+.category{margin-bottom:50px}
+.category-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border-color)}
+.category-icon{font-size:1.5rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(99,102,241,0.1);flex-shrink:0}
+.category-title{font-size:1.35rem;font-weight:700;color:var(--text-primary)}
+.category-count{font-size:0.8rem;color:var(--text-muted);background:rgba(100,116,139,0.2);padding:2px 10px;border-radius:100px;margin-left:auto}
+
+/* Blog cards grid */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{position:relative;padding:24px;border-radius:16px;background:var(--bg-card);border:1px solid var(--border-color);text-decoration:none;color:inherit;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);overflow:hidden;display:flex;flex-direction:column;cursor:pointer}
+.card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;border-radius:4px 0 0 4px;transition:width 0.3s}
+.card::after{content:'';position:absolute;inset:0;border-radius:16px;opacity:0;transition:opacity 0.3s;pointer-events:none}
+.card:hover{transform:translateY(-4px) scale(1.02);background:var(--bg-card-hover);border-color:transparent}
+.card:hover::before{width:6px}
+.card:hover::after{opacity:1}
+.card-title{font-size:1.05rem;font-weight:700;margin-bottom:6px;padding-left:14px;transition:color 0.3s}
+.card-url{font-size:0.75rem;color:var(--text-muted);padding-left:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color 0.3s}
+.card:hover .card-url{color:var(--text-secondary)}
+.card-arrow{position:absolute;right:20px;top:50%;transform:translateY(-50%) translateX(-5px);font-size:1.2rem;color:var(--text-muted);opacity:0;transition:all 0.3s}
+.card:hover .card-arrow{opacity:1;transform:translateY(-50%) translateX(0)}
+
+/* Footer */
+.footer{text-align:center;padding:50px 0 40px;border-top:1px solid var(--border-color);margin-top:30px}
+.footer-main{font-size:0.95rem;color:var(--text-secondary);margin-bottom:8px}
+.footer-main span{background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:600}
+.footer-copy{font-size:0.8rem;color:var(--text-muted)}
+
+/* Scroll animation */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s,transform 0.6s}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* Responsive */
+@media(max-width:640px){
+  .header{padding:50px 0 30px}
+  .stats{gap:24px}
+  .stat-number{font-size:1.5rem}
+  .cards-grid{grid-template-columns:1fr}
+  .youtube-section{padding:24px 18px}
+  .category-header{flex-wrap:wrap}
+  .category-count{margin-left:0}
+}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+
+<div class="container">
+
+  <!-- Header -->
+  <header class="header fade-in">
+    <h1>AI Tool Hub</h1>
+    <p class="subtitle">25+ AIツール特化ブログ & YouTube — 最新AI情報を毎日自動配信</p>
+    <div class="badge">&#x26A1; 全サイト自動更新中</div>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats fade-in">
+    <div class="stat"><div class="stat-number">25+</div><div class="stat-label">ブログ数</div></div>
+    <div class="stat"><div class="stat-number">7</div><div class="stat-label">カテゴリ</div></div>
+    <div class="stat"><div class="stat-number">24/7</div><div class="stat-label">自動配信</div></div>
+  </div>
+
+  <!-- YouTube Section -->
+  <section class="youtube-section fade-in">
+    <div class="yt-icon">&#9654;&#65039;</div>
+    <div class="yt-title">YouTube チャンネル</div>
+    <p class="yt-desc">AIツールの最新情報を動画で解説</p>
+    <a href="https://www.youtube.com/@UCgJ5B_B3B_0XzBoEew1Dz2w" target="_blank" rel="noopener" class="yt-link">
+      &#9654; チャンネルを見る
+    </a>
+  </section>
+
+  <!-- AI Chat -->
+  <section class="category fade-in">
+    <div class="category-header">
+      <div class="category-icon">&#128172;</div>
+      <div class="category-title">AIチャット</div>
+      <span class="category-count">5 サイト</span>
+    </div>
+    <div class="cards-grid">
+      <a href="https://musclelove-777.github.io/claude-ai-guide/" target="_blank" rel="noopener" class="card" style="--c:#d97757" data-color="#d97757">
+        <span class="card-title">Claude AI完全ガイド</span>
+        <span class="card-url">claude-ai-guide</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/chatgpt-master-navi/" target="_blank" rel="noopener" class="card" style="--c:#10a37f" data-color="#10a37f">
+        <span class="card-title">ChatGPT完全攻略ナビ</span>
+        <span class="card-url">chatgpt-master-navi</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/gemini-ai-master/" target="_blank" rel="noopener" class="card" style="--c:#4285f4" data-color="#4285f4">
+        <span class="card-title">Gemini AI使いこなし術</span>
+        <span class="card-url">gemini-ai-master</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/deepseek-navi/" target="_blank" rel="noopener" class="card" style="--c:#4f6ef7" data-color="#4f6ef7">
+        <span class="card-title">DeepSeek AI完全攻略ナビ</span>
+        <span class="card-url">deepseek-navi</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/grok-ai-guide/" target="_blank" rel="noopener" class="card" style="--c:#1DA1F2" data-color="#1DA1F2">
+        <span class="card-title">Grok AI完全攻略ガイド</span>
+        <span class="card-url">grok-ai-guide</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- AI Coding -->
+  <section class="category fade-in">
+    <div class="category-header">
+      <div class="category-icon">&#128187;</div>
+      <div class="category-title">AIコーディング</div>
+      <span class="category-count">5 サイト</span>
+    </div>
+    <div class="cards-grid">
+      <a href="https://musclelove-777.github.io/copilot-lab/" target="_blank" rel="noopener" class="card" style="--c:#0078d4" data-color="#0078d4">
+        <span class="card-title">Copilot活用ラボ</span>
+        <span class="card-url">copilot-lab</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/cursor-ai-master/" target="_blank" rel="noopener" class="card" style="--c:#7928ca" data-color="#7928ca">
+        <span class="card-title">Cursor AIコーディング完全攻略</span>
+        <span class="card-url">cursor-ai-master</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/antigravity-guide/" target="_blank" rel="noopener" class="card" style="--c:#00FF88" data-color="#00FF88">
+        <span class="card-title">Antigravity完全攻略ガイド</span>
+        <span class="card-url">antigravity-guide</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/windsurf-guide/" target="_blank" rel="noopener" class="card" style="--c:#00d4aa" data-color="#00d4aa">
+        <span class="card-title">Windsurf AIコーディング</span>
+        <span class="card-url">windsurf-guide</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/devin-ai-lab/" target="_blank" rel="noopener" class="card" style="--c:#7c3aed" data-color="#7c3aed">
+        <span class="card-title">Devin AIエージェント研究所</span>
+        <span class="card-url">devin-ai-lab</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- AI Image -->
+  <section class="category fade-in">
+    <div class="category-header">
+      <div class="category-icon">&#127912;</div>
+      <div class="category-title">AI画像生成</div>
+      <span class="category-count">2 サイト</span>
+    </div>
+    <div class="cards-grid">
+      <a href="https://musclelove-777.github.io/midjourney-master/" target="_blank" rel="noopener" class="card" style="--c:#5865F2" data-color="#5865F2">
+        <span class="card-title">Midjourney AI画像生成マスター</span>
+        <span class="card-url">midjourney-master</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/flux-ai-lab/" target="_blank" rel="noopener" class="card" style="--c:#ff6600" data-color="#ff6600">
+        <span class="card-title">Flux AI画像生成ラボ</span>
+        <span class="card-url">flux-ai-lab</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- AI Video -->
+  <section class="category fade-in">
+    <div class="category-header">
+      <div class="category-icon">&#127909;</div>
+      <div class="category-title">AI動画生成</div>
+      <span class="category-count">2 サイト</span>
+    </div>
+    <div class="cards-grid">
+      <a href="https://musclelove-777.github.io/veo-ai-master/" target="_blank" rel="noopener" class="card" style="--c:#ea4335" data-color="#ea4335">
+        <span class="card-title">Veo AI動画生成マスター</span>
+        <span class="card-url">veo-ai-master</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/runway-creators-guide/" target="_blank" rel="noopener" class="card" style="--c:#6c5ce7" data-color="#6c5ce7">
+        <span class="card-title">Runway AI動画クリエイターズガイド</span>
+        <span class="card-url">runway-creators-guide</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- AI Voice & Music -->
+  <section class="category fade-in">
+    <div class="category-header">
+      <div class="category-icon">&#127925;</div>
+      <div class="category-title">AI音声・音楽</div>
+      <span class="category-count">4 サイト</span>
+    </div>
+    <div class="cards-grid">
+      <a href="https://musclelove-777.github.io/elevenlabs-guide/" target="_blank" rel="noopener" class="card" style="--c:#6366f1" data-color="#6366f1">
+        <span class="card-title">ElevenLabs AI音声革命ガイド</span>
+        <span class="card-url">elevenlabs-guide</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/suno-music-lab/" target="_blank" rel="noopener" class="card" style="--c:#1DB954" data-color="#1DB954">
+        <span class="card-title">Suno AI音楽生成ラボ</span>
+        <span class="card-url">suno-music-lab</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/aqua-voice-guide/" target="_blank" rel="noopener" class="card" style="--c:#00BCD4" data-color="#00BCD4">
+        <span class="card-title">Aqua Voice完全ガイド</span>
+        <span class="card-url">aqua-voice-guide</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/typeless-guide/" target="_blank" rel="noopener" class="card" style="--c:#7C3AED" data-color="#7C3AED">
+        <span class="card-title">Typeless AIディクテーション</span>
+        <span class="card-url">typeless-guide</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- AI App Builder -->
+  <section class="category fade-in">
+    <div class="category-header">
+      <div class="category-icon">&#128640;</div>
+      <div class="category-title">AIアプリビルダー</div>
+      <span class="category-count">2 サイト</span>
+    </div>
+    <div class="cards-grid">
+      <a href="https://musclelove-777.github.io/lovable-guide/" target="_blank" rel="noopener" class="card" style="--c:#ff6b6b" data-color="#ff6b6b">
+        <span class="card-title">Lovableバイブコーディング</span>
+        <span class="card-url">lovable-guide</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/bolt-new-guide/" target="_blank" rel="noopener" class="card" style="--c:#1389FD" data-color="#1389FD">
+        <span class="card-title">Bolt.new AIアプリビルダー</span>
+        <span class="card-url">bolt-new-guide</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- AI Search -->
+  <section class="category fade-in">
+    <div class="category-header">
+      <div class="category-icon">&#128269;</div>
+      <div class="category-title">AI検索</div>
+      <span class="category-count">1 サイト</span>
+    </div>
+    <div class="cards-grid">
+      <a href="https://musclelove-777.github.io/perplexity-ai-guide/" target="_blank" rel="noopener" class="card" style="--c:#20b2aa" data-color="#20b2aa">
+        <span class="card-title">Perplexity AI検索革命ガイド</span>
+        <span class="card-url">perplexity-ai-guide</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- AI Automation -->
+  <section class="category fade-in">
+    <div class="category-header">
+      <div class="category-icon">&#9881;&#65039;</div>
+      <div class="category-title">AI自動化</div>
+      <span class="category-count">1 サイト</span>
+    </div>
+    <div class="cards-grid">
+      <a href="https://musclelove-777.github.io/n8n-master/" target="_blank" rel="noopener" class="card" style="--c:#ff6d5a" data-color="#ff6d5a">
+        <span class="card-title">n8n AI自動化マスター</span>
+        <span class="card-url">n8n-master</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Others -->
+  <section class="category fade-in">
+    <div class="category-header">
+      <div class="category-icon">&#128218;</div>
+      <div class="category-title">その他</div>
+      <span class="category-count">2 サイト</span>
+    </div>
+    <div class="cards-grid">
+      <a href="https://musclelove-777.github.io/ai-tech-blog/" target="_blank" rel="noopener" class="card" style="--c:#2563eb" data-color="#2563eb">
+        <span class="card-title">AI Tech Insights</span>
+        <span class="card-url">ai-tech-blog</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <a href="https://musclelove-777.github.io/quantum-brief/" target="_blank" rel="noopener" class="card" style="--c:#7c3aed" data-color="#7c3aed">
+        <span class="card-title">Quantum Brief</span>
+        <span class="card-url">quantum-brief</span>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer fade-in">
+    <p class="footer-main"><span>Powered by AI</span> — 全サイト自動更新中</p>
+    <p class="footer-copy">&copy; 2026 AI Tool Hub. All rights reserved.</p>
+  </footer>
+
+</div>
+
+<script>
+// Particle animation
+(function(){
+  const canvas=document.getElementById('particles');
+  const ctx=canvas.getContext('2d');
+  let w,h,particles=[];
+  function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight}
+  window.addEventListener('resize',resize);
+  resize();
+  class Particle{
+    constructor(){this.reset()}
+    reset(){this.x=Math.random()*w;this.y=Math.random()*h;this.size=Math.random()*2+0.5;this.speedX=(Math.random()-0.5)*0.3;this.speedY=(Math.random()-0.5)*0.3;this.opacity=Math.random()*0.4+0.1}
+    update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0||this.x>w)this.speedX*=-1;if(this.y<0||this.y>h)this.speedY*=-1}
+    draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=`rgba(99,102,241,${this.opacity})`;ctx.fill()}
+  }
+  const count=Math.min(80,Math.floor(w*h/15000));
+  for(let i=0;i<count;i++)particles.push(new Particle());
+  function animate(){
+    ctx.clearRect(0,0,w,h);
+    particles.forEach(p=>{p.update();p.draw()});
+    // Draw connections
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const dx=particles[i].x-particles[j].x;
+        const dy=particles[i].y-particles[j].y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<120){
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x,particles[i].y);
+          ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.strokeStyle=`rgba(99,102,241,${0.08*(1-dist/120)})`;
+          ctx.lineWidth=0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// Apply card colors dynamically
+document.querySelectorAll('.card').forEach(card=>{
+  const color=card.dataset.color;
+  card.style.setProperty('--c',color);
+  card.querySelector('.card-title').style.color=color;
+  // Set ::before and ::after via inline approach
+  const style=document.createElement('style');
+  const id='c'+Math.random().toString(36).slice(2,8);
+  card.classList.add(id);
+  style.textContent=`.${id}::before{background:${color}!important}.${id}::after{box-shadow:inset 0 0 0 1px ${color}40,0 0 30px ${color}15!important}`;
+  document.head.appendChild(style);
+});
+
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
