@@ -560,5 +560,95 @@ document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
     </div>
   </div>
 </footer>
+<!-- HIT_BOOST_v1 -->
+<style>
+.hit-boost-section { max-width:1000px; margin:40px auto 10px; padding:0 16px; }
+.hit-boost-section h2 { font-size:1.15rem; font-weight:800; margin-bottom:14px; color:#1B4332; display:flex; align-items:center; gap:8px; }
+.hit-boost-section h2::before { content:""; display:inline-block; width:4px; height:18px; background:linear-gradient(135deg,#6366f1,#06b6d4); border-radius:2px; }
+.hit-boost-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+.hit-card { display:flex; gap:12px; align-items:center; padding:14px 16px; background:#fff; border:1.5px solid #e5e7eb; border-radius:12px; text-decoration:none !important; color:inherit; transition:all .2s; }
+.hit-card:hover { transform:translateY(-2px); border-color:#6366f1; box-shadow:0 6px 20px rgba(99,102,241,.12); }
+.hit-rank { font-size:.72rem; font-weight:800; letter-spacing:.06em; color:#6366f1; flex-shrink:0; padding:4px 8px; background:#eef2ff; border-radius:999px; }
+.hit-body { flex:1; min-width:0; }
+.hit-title { font-size:.95rem; font-weight:700; color:#1f2937; margin-bottom:2px; line-height:1.35; }
+.hit-blurb { font-size:.78rem; color:#6b7280; line-height:1.45; }
+.hit-arrow { font-size:1.2rem; color:#9ca3af; flex-shrink:0; }
+@media (max-width:640px) { .hit-boost-section h2 { font-size:1.05rem; } }
+</style>
+<section class="hit-boost-section" aria-label="ヒット急上昇TOP3">
+  <h2>ヒット急上昇 TOP3 (過去90日 / GA4実績)</h2>
+  <div class="hit-boost-grid">
+        <a href="https://musclelove-777.github.io/elevenlabs-guide/" target="_blank" rel="noopener" class="hit-card">
+          <div class="hit-rank">No.1</div>
+          <div class="hit-body">
+            <div class="hit-title">ElevenLabs AI音声革命ガイド</div>
+            <div class="hit-blurb">AI音声合成の決定版。無料枠の使い方〜商用利用までを完全網羅。</div>
+          </div>
+          <div class="hit-arrow">&rarr;</div>
+        </a>
+        <a href="https://musclelove-777.github.io/lovable-guide/" target="_blank" rel="noopener" class="hit-card">
+          <div class="hit-rank">No.2</div>
+          <div class="hit-body">
+            <div class="hit-title">Lovable AIコーディング入門</div>
+            <div class="hit-blurb">ノーコード時代の主役、Lovableで作るWebアプリの最短ルート。</div>
+          </div>
+          <div class="hit-arrow">&rarr;</div>
+        </a>
+        <a href="https://musclelove-777.github.io/ai-tech-blog/" target="_blank" rel="noopener" class="hit-card">
+          <div class="hit-rank">No.3</div>
+          <div class="hit-body">
+            <div class="hit-title">ai-tech-blog 最新AIニュース</div>
+            <div class="hit-blurb">毎日更新。AIツール最前線の動向を要点だけで素早くキャッチ。</div>
+          </div>
+          <div class="hit-arrow">&rarr;</div>
+        </a>
+  </div>
+</section>
+<script>
+(function(){
+  // 自動キーワード→内部リンク化 (テキストノードのみ、既存<a>内はスキップ)
+  var MAP = {"ElevenLabs": "https://musclelove-777.github.io/elevenlabs-guide/", "elevenlabs": "https://musclelove-777.github.io/elevenlabs-guide/", "AI音声": "https://musclelove-777.github.io/elevenlabs-guide/", "音声合成": "https://musclelove-777.github.io/elevenlabs-guide/", "Lovable": "https://musclelove-777.github.io/lovable-guide/", "lovable": "https://musclelove-777.github.io/lovable-guide/", "ノーコード": "https://musclelove-777.github.io/lovable-guide/", "Bolt.new": "https://musclelove-777.github.io/bolt-new-guide/", "Cursor": "https://musclelove-777.github.io/cursor-ai-master/", "Claude": "https://musclelove-777.github.io/claude-ai-guide/", "ChatGPT": "https://musclelove-777.github.io/chatgpt-master-navi/", "Gemini": "https://musclelove-777.github.io/gemini-ai-master/", "Midjourney": "https://musclelove-777.github.io/midjourney-master/", "Perplexity": "https://musclelove-777.github.io/perplexity-ai-guide/", "Suno": "https://musclelove-777.github.io/suno-music-lab/"};
+  var keys = Object.keys(MAP).sort(function(a,b){ return b.length - a.length; });
+  var here = location.pathname;
+  function eligible(node){
+    if (!node.parentNode) return false;
+    if (node.parentNode.closest('a, h1, h2, h3, h4, h5, h6, code, pre, script, style, .hit-card, .promo-musclelove, .card')) return false;
+    var t = node.nodeValue;
+    return !!(t && t.trim());
+  }
+  function process(){
+    var root = document.querySelector('main') || document.body;
+    if (!root) return;
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){ return eligible(n) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT; }
+    });
+    var nodes = [], n;
+    while ((n = w.nextNode())) nodes.push(n);
+    var capPerPage = 6, used = 0;
+    nodes.forEach(function(tn){
+      if (used >= capPerPage) return;
+      var t = tn.nodeValue, hit = null;
+      for (var i=0;i<keys.length;i++){
+        var k = keys[i], u = MAP[k];
+        if (!u || here.indexOf(u.replace(/^https?:\/\/[^/]+/,'')) !== -1) continue;
+        var idx = t.indexOf(k);
+        if (idx !== -1){ hit = {k:k,u:u,idx:idx}; break; }
+      }
+      if (!hit) return;
+      var before = document.createTextNode(t.substring(0, hit.idx));
+      var a = document.createElement('a');
+      a.href = hit.u; a.textContent = hit.k; a.rel='noopener'; a.dataset.autolink='1';
+      a.style.cssText='color:#6366f1;border-bottom:1px dashed #6366f1;text-decoration:none;';
+      var after = document.createTextNode(t.substring(hit.idx + hit.k.length));
+      var p = tn.parentNode;
+      p.insertBefore(before, tn); p.insertBefore(a, tn); p.insertBefore(after, tn); p.removeChild(tn);
+      used++;
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', process);
+  else process();
+})();
+</script>
+<!-- /HIT_BOOST_v1 -->
 </body>
 </html>
