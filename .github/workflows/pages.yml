@@ -20,6 +20,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Set up image checker
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Ensure article images and card thumbnails
+        run: |
+          python -m pip install beautifulsoup4==4.15.0
+          python scripts/enhance_project.py --root '.' --project 'ai-tool-hub'
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
