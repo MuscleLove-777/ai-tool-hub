@@ -2,7 +2,7 @@
 import argparse
 from pathlib import Path
 from bs4 import BeautifulSoup
-from brand_hub import IMAGE, PREFIX, check_assets
+from brand_hub import IMAGE, PREFIX, CARD_ART, check_assets
 
 def check(root):
     check_assets(root)
@@ -17,7 +17,7 @@ def check(root):
         assert soup.select_one('.ml-always img')['src'] == IMAGE
         assert soup.select_one('#ml-brand-css')['href'] == PREFIX+'css/brand.css'
         for card in soup.select('a.card'):
-            assert card.select_one('img')['src'] == IMAGE
+            assert card.select_one('img')['src'] in {PREFIX+'images/'+a[0] for a in CARD_ART}
         for tag in soup.select('img[src], link[href], script[src]'):
             url = tag.get('src', tag.get('href',''))
             if url.startswith(PREFIX):

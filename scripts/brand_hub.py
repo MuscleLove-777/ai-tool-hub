@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 
 PREFIX = '/ai-tool-hub/assets/'
 IMAGE = PREFIX + 'images/musclelove-stretch.png'
+CARD_ART = [('musclelove-flex.png',1536,1024),('musclelove-towel.png',1536,1024),('musclelove-stretch.png',1024,1536)]
 ALT = '明るいジムで両腕を上げる、筋肉質な架空の日本人成人女性のアニメイラスト'
 
 
@@ -49,6 +50,11 @@ def apply_brand(soup, home=False):
             img['alt'] = ALT
     for caption in soup.select('.ml-project-cover figcaption'):
         caption.string = '架空の成人女性のAIイラスト'
+    for i, img in enumerate(soup.select('.ml-card-image')):
+        name,w,h = CARD_ART[i % len(CARD_ART)]
+        img['src'] = PREFIX+'images/'+name
+        img['data-ml-fallback'] = IMAGE
+        img['width'],img['height'] = str(w),str(h)
     if not soup.select_one('.ml-always'):
         soup.body.append(fragment(f'''<aside class="ml-always" aria-label="MuscleLove ブランド"><img src="{IMAGE}" alt="{ALT}" width="1024" height="1536" decoding="async"/><div><strong>Muscle<span>Love</span></strong><p>強く、美しく。</p><a href="https://x.com/MuscleGirlLove7" target="_blank" rel="noopener">公式X <span aria-hidden="true">↗</span></a></div></aside>'''))
     for attr, key, value in [('property','og:image', 'https://musclelove-777.github.io'+IMAGE),('name','twitter:image','https://musclelove-777.github.io'+IMAGE),('property','og:image:width','1024'),('property','og:image:height','1536'),('property','og:image:type','image/png')]:
@@ -60,6 +66,6 @@ def apply_brand(soup, home=False):
 
 
 def check_assets(root):
-    for name in ['images/musclelove-stretch.png', 'css/brand.css', 'js/brand.js']:
+    for name in ['images/musclelove-stretch.png','images/musclelove-flex.png','images/musclelove-towel.png','css/brand.css','js/brand.js','css/network.css','js/network.js']:
         if not (Path(root)/'assets'/name).is_file():
             raise ValueError('Required brand asset missing: '+name)
