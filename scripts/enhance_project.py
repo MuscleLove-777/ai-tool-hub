@@ -12,6 +12,7 @@ import re
 from urllib.parse import urlsplit
 
 from bs4 import BeautifulSoup
+from brand_hub import apply_brand, check_assets
 
 BASE = "https://musclelove-777.github.io"
 SKIP = {".git", "node_modules", "templates", "layouts", "themes", "scripts", "blog_engine", "references", ".venv"}
@@ -50,6 +51,8 @@ def run(root, project):
     if not (root / "index.html").is_file():
         raise ValueError("Build output has no index.html; refusing to publish an empty site")
     cover = chosen_image(project)
+    if project == 'ai-tool-hub':
+        check_assets(root)
     counts = Counter()
     failures = []
     for path in sorted(root.rglob("*.html")):
@@ -104,6 +107,9 @@ def run(root, project):
                 failures.append(relative.as_posix())
             else:
                 counts["articles_with_image"] += 1
+        if project == 'ai-tool-hub':
+            apply_brand(soup, home=relative.as_posix() == 'index.html')
+            counts['brand_pages'] += 1
         new = re.sub(r"(<!DOCTYPE[^>]*>)\s*", r"\1\n", str(soup), count=1, flags=re.I)
         if new != original:
             path.write_text(new, encoding="utf-8")
@@ -118,6 +124,9 @@ if __name__ == "__main__":
     parser.add_argument("--project", required=True)
     args = parser.parse_args()
     result = run(args.root.resolve(), args.project)
+    if args.project == 'ai-tool-hub':
+        from check_brand import check
+        check(args.root.resolve())
     print(json.dumps(result, ensure_ascii=False))
     if result["status"] != "PASS":
         raise SystemExit(1)
