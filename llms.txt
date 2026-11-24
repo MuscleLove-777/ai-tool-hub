@@ -1,10 +1,10 @@
-# AI Tool Hub — 31 AIツール・漢方・フィットネス特化ブログ & YouTube
+# MuscleLove AI Tool Hub | 強く、美しく。つくる力も、鍛えよう。
 
-> 31のAIツール・漢方・フィットネス特化ブログとYouTubeチャンネルを集約したポータルサイト。ChatGPT、Claude、Gemini、漢方、筋トレ等の最新情報を毎日自動配信。
+> ai-tool-hub — MuscleLove-777 network site.
 
 ## Main Pages
 
-- [ai tool hub](https://musclelove-777.github.io/ai-tool-hub/): main page of AI Tool Hub — 31 AIツール・漢方・フィットネス特化ブログ & YouTube.
+- [ai tool hub](https://musclelove-777.github.io/ai-tool-hub/): main page of MuscleLove AI Tool Hub | 強く、美しく。つくる力も、鍛えよう。.
 
 ## About this file
 
